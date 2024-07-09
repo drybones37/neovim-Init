@@ -1,4 +1,6 @@
-call plug#begin('C:\Users\dreww\AppData\Local\nvim\autoload\plugged\')
+
+call plug#begin('~/.config/plugged/')
+let g:python3_host_prog = '/usr/bin/python3'
 
 " File and folder management
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
@@ -42,6 +44,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 Plug 'tpope/vim-surround' 
 
 " Zen Mode
+Plug 'junegunn/goyo.vim'
 Plug  'folke/zen-mode.nvim'
 
 " Typescript
@@ -89,6 +92,8 @@ highlight ColorColumn ctermbg=0 guibg=lightgrey
 set guifont=Source\ Code\ Pro:h12
 
 
+" Map jj to escape in insert mode
+inoremap jj <Esc>
 
 let g:mapleader = "\<Space>"
 let g:maplocalleader = ','
@@ -132,11 +137,11 @@ nmap <leader>rn <Plug>(coc-rename)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
+	execute 'h '.expand('<cword>')
   elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
+	call CocActionAsync('doHover')
   else
-    execute '!' . &keywordprg . " " . expand('<cword>')
+	execute '!' . &keywordprg . " " . expand('<cword>')
   endif
 endfunction
 
@@ -163,7 +168,7 @@ else
 endif
 
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+							  \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 
 " Applying codeAction to the selected region.
